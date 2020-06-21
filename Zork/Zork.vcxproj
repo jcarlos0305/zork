@@ -151,7 +151,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Zork.cpp" />
+    <ClCompile Include="area.cpp" />
+    <ClCompile Include="character.cpp" />
+    <ClCompile Include="exit.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="item.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="main_character.cpp" />
+    <ClCompile Include="non_player_character.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="area.h" />
+    <ClInclude Include="character.h" />
+    <ClInclude Include="exit.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="item.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="main_character.h" />
+    <ClInclude Include="non_player_character.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

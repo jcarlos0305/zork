@@ -8,6 +8,12 @@ public:
 	Map();
 	~Map();
 
-public:
+	// Accessors
+	inline list<Area*> getAreas() const { return this->areas; }
+
+	// Functions
+	void AddArea(Area* area);
+
+private:
 	list<Area*> areas;
 };

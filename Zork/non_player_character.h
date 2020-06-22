@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "character.h"
 
 enum Behavior {
@@ -9,7 +10,7 @@ enum Behavior {
 
 class NonPlayerCharacter : public Character {
 public:
-	NonPlayerCharacter(string name, string description);
+	NonPlayerCharacter(string name, string description, int hit_points, int attack_damage);
 	virtual ~NonPlayerCharacter();
 
 	// Accessors

@@ -19,11 +19,15 @@ Game::Game() {
 	trail->AddExit(trail_to_mountain);
 	descent->AddExit(descent_to_mountain);
 
-	NonPlayerCharacter* npc = new NonPlayerCharacter("Pajarito", "a really angry-looking bird stands in the middle looking straight at you.");
+	NonPlayerCharacter* npc = new NonPlayerCharacter("Pajarito", "a really angry-looking bird stands in the middle looking straight at you.", 40, 15);
 	trail->AddNPC(npc);
 
+	/* Item creation */
+	Item* sword = new Item("Rusty sword", "It doesn't look like it can hurt anything", WEAPON);
+
 	/* Character creation */
-	player = new MainCharacter("Capu", "Character in development", mountain);
+	player = new MainCharacter("Capu", "Character in development", 50, 10, mountain);
+	player->PickItem(sword);
 
 	this->playing = true;
 }
@@ -46,4 +50,12 @@ void Game::StartGame() {
 	player->GoToArea("south");
 
 	player->getCurrentLocation()->DisplayInformation();
+
+	player->ShowStats();
+
+	cout << endl;
+
+	player->ShowInventory();
+
+	cout << endl;
 }

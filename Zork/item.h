@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <list>
 
 using namespace std;
@@ -23,9 +24,13 @@ public:
 	// Functions
 	void AddItem(Item* item);
 
+	// Mutators
+	void setAttackDamage(int damage);
+
 private:
 	string name;
 	string description;
 	ItemType type;
+	int attack_damage;
 	list<Item*> contain_items;
 };

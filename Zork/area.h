@@ -3,6 +3,7 @@
 #include "exit.h"
 #include "item.h"
 #include "character.h"
+#include <iostream>
 #include <string>
 #include <list>
 
@@ -14,7 +15,7 @@ using namespace std;
 
 class Area {
 public:
-	Area(const char* name, const char* description);
+	Area(string name, string description);
 	virtual ~Area();
 
 	// Accessors
@@ -29,6 +30,7 @@ public:
 	void AddExit(Exit* exit);
 	void AddItem(Item* item);
 	void AddNPC(Character* npc);
+	void DisplayInformation();
 
 private:
 	string name;

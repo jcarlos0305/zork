@@ -1,7 +1,7 @@
 #pragma once
 
-#include "map.h"
 #include "main_character.h"
+#include "non_player_character.h"
 #include <string>
 #include <iostream>
 
@@ -19,5 +19,4 @@ private:
 	bool playing;
 
 	MainCharacter* player;
-	Map* game_map;
 };

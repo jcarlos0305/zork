@@ -2,8 +2,19 @@
 
 #include "character.h"
 
+enum Behavior {
+	NEUTRAL,
+	AGGRESSIVE
+};
+
 class NonPlayerCharacter : public Character {
 public:
-	NonPlayerCharacter(const char* name, const char* description, Area* current_location);
+	NonPlayerCharacter(string name, string description);
 	virtual ~NonPlayerCharacter();
+
+	// Accessors
+	inline Behavior getNpcBehavior() const { return this->npc_behavior; }
+
+private:
+	Behavior npc_behavior;
 };

@@ -1,11 +1,10 @@
 #include "item.h"
 
-Item::Item()
-{
+Item::Item(string name, string description, ItemType type)
+	: name(name), description(description), type(type) {
 }
 
-Item::~Item()
-{
+Item::~Item() {
 }
 
 void Item::AddItem(Item * item) {

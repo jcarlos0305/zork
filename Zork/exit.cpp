@@ -1,6 +1,6 @@
 #include "exit.h"
 
-Exit::Exit(const char* direction, const char* description, Area* next_location, bool can_travel) :
+Exit::Exit(string direction, string description, Area* next_location, bool can_travel) :
 	direction(direction), description(description), next_location(next_location), can_travel(can_travel) {
 }
 

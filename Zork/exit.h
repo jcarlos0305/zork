@@ -9,7 +9,7 @@ using namespace std;
 
 class Exit {
 public:
-	Exit(const char* direction, const char* description, Area* next_location, bool can_travel = true);
+	Exit(string direction, string description, Area* next_location, bool can_travel = true);
 	virtual ~Exit();
 
 	// Accessors

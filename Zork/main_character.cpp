@@ -1,7 +1,7 @@
 #include "main_character.h"
 
-MainCharacter::MainCharacter(string name, string description, Area* current_location) :
-	Character(name, description), current_location(current_location) {
+MainCharacter::MainCharacter(string name, string description, int hit_points, int attack_damage, Area* current_location) :
+	Character(name, description, hit_points, attack_damage), current_location(current_location) {
 }
 
 MainCharacter::~MainCharacter() {
@@ -15,6 +15,16 @@ void MainCharacter::GoToArea(string direction) {
 		}
 	}
 }
+
+void MainCharacter::PickItem(Item * item) {
+	AddToInventory(item);
+}
+
+void MainCharacter::DropItem(Item * item) {
+	RemoveFromInventory(item);
+}
+
+
 
 void MainCharacter::setCurrentLocation(Area * area) {
 	current_location = area;

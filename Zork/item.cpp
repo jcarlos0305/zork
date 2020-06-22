@@ -10,3 +10,7 @@ Item::~Item() {
 void Item::AddItem(Item * item) {
 	contain_items.push_back(item);
 }
+
+void Item::setAttackDamage(int damage) {
+	attack_damage = damage;
+}

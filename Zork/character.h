@@ -20,6 +20,7 @@ public:
 	inline string getDescription() const { return this->description; }
 	inline int getHitPoints() const { return this->hit_points; }
 	inline int getAttackDamage() const { return this->attack_damage; }
+	inline bool getIsAlive() const { return this->hit_points > 0; }
 	inline list<Item*> getInventory() const { return this->inventory; }
 
 	// Functions
@@ -27,6 +28,8 @@ public:
 	void RemoveFromInventory(Item* item);
 	void ShowStats();
 	void ShowInventory();
+	void Attack(Character* enemy);
+	void TakeDamage(int incoming_damage);
 
 private:
 	string name;

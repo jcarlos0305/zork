@@ -1,7 +1,7 @@
 #include "character.h"
 
 Character::Character(string name, string description, int  hit_points, int attack_damage) :
-name(name), description(description), hit_points( hit_points), attack_damage(attack_damage){
+name(name), description(description), hit_points( hit_points), attack_damage(attack_damage) {
 
 }
 
@@ -33,4 +33,12 @@ void Character::ShowInventory() {
 		}
 		cout << endl;
 	}
+}
+
+void Character::Attack(Character* enemy) {
+	enemy->TakeDamage(attack_damage);
+}
+
+void Character::TakeDamage(int incoming_damage) {
+	hit_points -= incoming_damage;
 }

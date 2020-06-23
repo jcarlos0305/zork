@@ -47,15 +47,21 @@ void Game::StartGame() {
 
 	player->getCurrentLocation()->DisplayInformation();
 
-	player->GoToArea("south");
+	cout << endl;
 
-	player->getCurrentLocation()->DisplayInformation();
+	player->ShowInventory();
+
+	cout << endl;
 
 	player->ShowStats();
 
 	cout << endl;
 
-	player->ShowInventory();
+	Character* npc = player->getCurrentLocation()->getNPCs().front();
+
+	npc->Attack(player);
+
+	player->ShowStats();
 
 	cout << endl;
 }

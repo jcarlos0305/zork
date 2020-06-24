@@ -28,6 +28,7 @@ public:
 	// Functions
 	void AddExit(Exit* exit);
 	void AddItem(Item* item);
+	void RemoveItem(Item* item);
 	void AddNPC(Character* npc);
 	void DisplayInformation() const;
 

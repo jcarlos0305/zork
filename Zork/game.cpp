@@ -28,7 +28,7 @@ Game::Game() {
 
 	/* Character creation */
 	player = new MainCharacter("Capu", "Character in development", 50, 10, mountain);
-	player->PickItem(sword);
+	player->AddToInventory(sword);
 
 	this->playing = true;
 }

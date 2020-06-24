@@ -16,11 +16,17 @@ public:
 	void setCurrentLocation(Area* area);
 
 	// Functions
-	void GoToArea(string direction);
-	void PickItem(Item* item);
-	void DropItem(Item* item);
+	void Go(string direction);
+	void Pick();
+	void Pick(string item_name);
+	void Drop();
+	void Drop(string item_name);
+	void Attack();
+	void Attack(string enemy);
 
 private:
 	Area* current_location;
+
+	Item* GetItemFromInventory(string itemName);
 };
 

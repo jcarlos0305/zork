@@ -2,6 +2,8 @@
 
 Item::Item(string name, string description, ItemType type)
 	: name(name), description(description), type(type) {
+	attack_damage = 0;
+	hit_points = 0;
 }
 
 Item::~Item() {
@@ -13,4 +15,8 @@ void Item::AddItem(Item * item) {
 
 void Item::setAttackDamage(int damage) {
 	attack_damage = damage;
+}
+
+void Item::setHitPoints(int hp) {
+	hit_points = hp;
 }

@@ -19,7 +19,7 @@ void Area::AddNPC(Character * npc) {
 	npcs.push_back(npc);
 }
 
-void Area::DisplayInformation() {
+void Area::DisplayInformation() const {
 	cout << name << endl;
 	cout << description << " ";
 

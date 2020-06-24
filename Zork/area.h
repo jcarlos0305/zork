@@ -21,7 +21,6 @@ public:
 	// Accessors
 	inline string getName() const { return this->name; }
 	inline string getDescription() const { return this->description; }
-
 	inline list<Exit*> getExits() const { return this->exits; }
 	inline list<Item*> getItems() const { return this->items; }
 	inline list<Character*> getNPCs() const { return this->npcs; }
@@ -30,7 +29,7 @@ public:
 	void AddExit(Exit* exit);
 	void AddItem(Item* item);
 	void AddNPC(Character* npc);
-	void DisplayInformation();
+	void DisplayInformation() const;
 
 private:
 	string name;

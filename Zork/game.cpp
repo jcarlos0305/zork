@@ -24,6 +24,7 @@ Game::Game() {
 
 	/* Item creation */
 	Item* sword = new Item("Rusty sword", "It doesn't look like it can hurt anything", WEAPON);
+	sword->setAttackDamage(10);
 
 	/* Character creation */
 	player = new MainCharacter("Capu", "Character in development", 50, 10, mountain);

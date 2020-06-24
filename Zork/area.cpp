@@ -15,6 +15,10 @@ void Area::AddItem(Item * item) {
 	items.push_back(item);
 }
 
+void Area::RemoveItem(Item * item) {
+	items.remove(item);
+}
+
 void Area::AddNPC(Character * npc) {
 	npcs.push_back(npc);
 }

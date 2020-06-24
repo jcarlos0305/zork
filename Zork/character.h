@@ -37,12 +37,13 @@ public:
 	void Attack(Character* enemy) const;
 	void TakeDamage(int incoming_damage);
 
+protected:
+	list<Item*> inventory;
+
 private:
 	string name;
 	string description;
 
 	Stats base_stats;
 	Stats current_stats;
-
-	list<Item*> inventory;
 };

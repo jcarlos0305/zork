@@ -2,8 +2,11 @@
 
 #include "main_character.h"
 #include "non_player_character.h"
-#include <string>
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,6 +17,7 @@ public:
 	
 	// Functions
 	void StartGame();
+	void GameLoop();
 
 private:
 	bool playing;

@@ -41,27 +41,32 @@ void Game::StartGame() {
 	cout << "Map name: " << player->getCurrentLocation()->getName() << endl;
 	cout << endl;
 
-	player->getCurrentLocation()->DisplayInformation();
+	GameLoop();
+}
 
-	player->GoToArea("north");
+void Game::GameLoop() {
 
-	player->getCurrentLocation()->DisplayInformation();
+	string user_input;
+	vector<string> args;
 
-	cout << endl;
+	while (playing) {
+		player->getCurrentLocation()->DisplayInformation();
 
-	player->ShowInventory();
+		cout << "> ";
+		
+		getline (cin, user_input);
 
-	cout << endl;
+		istringstream ss(user_input);
+		string token = "";
 
-	player->ShowStats();
+		while (getline(ss, token, ' ')) {
+			args.push_back(token);
+		}
 
-	cout << endl;
+		for (string word : args)
+			cout << word  << endl;
 
-	Character* npc = player->getCurrentLocation()->getNPCs().front();
-
-	npc->Attack(player);
-
-	player->ShowStats();
-
-	cout << endl;
+		if (find(args.begin(), args.end(), "exit") != args.end())
+			playing = false;
+	}
 }

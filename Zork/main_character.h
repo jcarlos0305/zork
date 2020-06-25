@@ -3,6 +3,7 @@
 #include "character.h"
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 class MainCharacter : public Character {
 public:
@@ -27,6 +28,6 @@ public:
 private:
 	Area* current_location;
 
-	Item* GetItemFromInventory(string itemName);
+	Item* FindItem(list<Item*> item_list, const string& itemName);
 };
 

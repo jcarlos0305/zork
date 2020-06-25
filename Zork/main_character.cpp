@@ -7,19 +7,20 @@ MainCharacter::MainCharacter(string name, string description, int hit_points, in
 MainCharacter::~MainCharacter() {
 }
 
-void MainCharacter::Go(string direction) {
+void MainCharacter::Go(const string direction) {
 	for (Exit* const exit : current_location->getExits()) {
 		if (direction.compare(exit->getDirection()) == 0) {
 			cout << "You traveled " << direction << endl << endl;
 			current_location = exit->getNextLocation();
+			current_location->DisplayInformation();
 		}
 	}
 }
 
-Item * MainCharacter::GetItemFromInventory(string itemName)
+Item * MainCharacter::FindItem(list<Item*> item_list, const string& itemName)
 {
-	for (Item* const item : inventory) {
-		if (item->getName().compare(itemName) == 0) {
+	for (Item* const item : item_list) {
+		if (_stricmp(itemName.c_str(), item->getName().c_str()) == 0) {
 			return item;
 		}
 	}
@@ -31,39 +32,53 @@ void MainCharacter::Pick() {
 	if (item) {
 		AddToInventory(item);
 		current_location->RemoveItem(item);
+		cout << "You picked " << item->getName() << endl;
+		cout << endl;
 	}
 	else {
 		cout << "There where no items to pick" << endl;
+		cout << endl;
 	}
 }
 
 void MainCharacter::Pick(string item_name) { 
-	Item* item = GetItemFromInventory(item_name);
+	Item* item = FindItem(current_location->getItems(), item_name);
 	if (item) {
 		AddToInventory(item);
 		current_location->RemoveItem(item);
+		cout << "You picked " << item->getName() << endl;
+		cout << endl;
 	} else {
 		cout << item_name << " not found" << endl;
+		cout << endl;
 	}
 }
 
-void MainCharacter::Drop() { 
+void MainCharacter::Drop() {
 	Item* item = inventory.back();
 	if (item) {
 		RemoveFromInventory(item);
 		current_location->AddItem(item);
-	} else {
+		cout << item->getName() << " was dropped" << endl;
+		cout << endl;
+	}
+	else {
 		cout << "There where no items to drop" << endl;
+		cout << endl;
 	}
 }
 
-void MainCharacter::Drop(string item_name) { 
-	Item* item = GetItemFromInventory(item_name);
+void MainCharacter::Drop(string item_name) {
+	Item* item = FindItem(inventory, item_name);
 	if (item) {
 		RemoveFromInventory(item);
 		current_location->AddItem(item);
-	} else {
+		cout << item->getName() << " was dropped" << endl;
+		cout << endl;
+	}
+	else {
 		cout << item_name << " not found" << endl;
+		cout << endl;
 	}
 }
 
@@ -75,6 +90,7 @@ void MainCharacter::Attack() {
 	else {
 		this->TakeDamage(1);
 		cout << "You hit yourself in confusion" << endl;
+		cout << endl;
 	}
 	
 }

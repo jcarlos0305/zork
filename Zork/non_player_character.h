@@ -9,4 +9,5 @@ public:
 	virtual ~NonPlayerCharacter();
 
 	void Die();
+	Area* getCurrentLocation();
 };

@@ -12,3 +12,8 @@ void NonPlayerCharacter::Die() {
 	cout << this->getName() << " has died." << endl;
 	cout << endl;
 }
+
+Area * NonPlayerCharacter::getCurrentLocation()
+{
+	return nullptr;
+}

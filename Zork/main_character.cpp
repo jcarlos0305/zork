@@ -23,7 +23,7 @@ void MainCharacter::Go(string direction) {
 		}
 	}
 	else {
-		cout << "There was no exit on that direction" << endl;
+		cout << "You can't go there" << endl;
 		cout << endl;
 	}
 }
@@ -92,45 +92,41 @@ void MainCharacter::Drop(string item_name) {
 	}
 }
 
+Character * MainCharacter::FindNpc(list<Character*> npc_list, const string& enemy_name) {
+	for (Character* const npc : npc_list) {
+		if (Utils::stringCompare(enemy_name.c_str(), npc->getName().c_str()) == 0) {
+			return npc;
+		}
+	}
+	return nullptr;
+}
+
 void MainCharacter::Attack() {
-	Character* npc = current_location->getNPCs().back();
-	if (npc) {
-		Character::Attack(npc);
-		cout << "You attacked " << npc->getName() << endl;
-		if (npc->getIsAlive()) {
-			npc->Attack(this);
-			cout << npc->getName() << " attacked you back" << endl;
-			cout << endl;
-			if (!this->getIsAlive()) {
-				cout << "You died!" << endl;
-				cout << endl;
-				Die();
-			}
-			else {
-				cout << "The fight keeps going" << endl;
-				cout << endl;
-			}
-		}
-		else {
-			npc->Die();
-			current_location->RemoveNPC(npc);
-			current_location->getExits().back()->setCanTravel(true);
-		}
+	if (current_location->getNPCs().size()) {
+		Character* npc = current_location->getNPCs().back();
+		Character::Attack(npc, this);
 	}
 	else {
 		this->TakeDamage(1);
 		cout << "You hit yourself in confusion" << endl;
 		cout << endl;
 	}
-	
 }
 
 void MainCharacter::Attack(string enemy) {
-	for (Character* const npc : current_location->getNPCs()) {
-		if (npc->getName().compare(enemy) == 0) {
-			Character::Attack(npc);
-		}
+	Character* npc = FindNpc(current_location->getNPCs(), enemy);
+	if (npc) {
+		Character::Attack(npc, this);
 	}
+	else {
+		this->TakeDamage(1);
+		cout << "You hit yourself in confusion" << endl;
+		cout << endl;
+	}
+}
+
+Area* MainCharacter::getCurrentLocation() {
+	return current_location;
 }
 
 void MainCharacter::Die() {

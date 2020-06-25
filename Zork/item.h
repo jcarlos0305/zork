@@ -17,7 +17,7 @@ public:
 	virtual ~Item();
 
 	// Accessors
-	inline string getName() const { return this->name; }
+	string getName() const;
 	inline string getDescription() const { return this->description; }
 	inline ItemType getType() const { return this->type; }
 	inline int getHitPoints() const { return this->hit_points; }

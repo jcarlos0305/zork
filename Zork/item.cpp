@@ -9,6 +9,13 @@ Item::Item(string name, string description, ItemType type) :
 Item::~Item() {
 }
 
+string Item::getName() const {
+	if (contain_items.size()) {
+		return name + " (" + contain_items.front()->getName() + ")";
+	}
+	return name;
+}
+
 void Item::AddItem(Item * item) {
 	contain_items.push_back(item);
 }

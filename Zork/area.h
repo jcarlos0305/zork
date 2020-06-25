@@ -16,7 +16,7 @@ using namespace std;
 
 class Area {
 public:
-	Area(string name, string description);
+	Area(string name, string description, bool last_area = false);
 	virtual ~Area();
 
 	// Accessors
@@ -25,6 +25,7 @@ public:
 	inline list<Exit*> getExits() const { return this->exits; }
 	inline list<Item*> getItems() const { return this->items; }
 	inline list<Character*> getNPCs() const { return this->npcs; }
+	inline bool getIsLastArea() const { return this->last_area; }
 
 	// Functions
 	void AddExit(Exit* exit);
@@ -39,6 +40,7 @@ public:
 private:
 	string name;
 	string description;
+	bool last_area;
 
 	list<Exit*> exits;
 	list<Item*> items;

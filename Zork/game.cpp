@@ -5,12 +5,12 @@ Game::Game() {
 	/* Game entities creation */
 
 	/* Areas */
-	Area* mountain = new Area("Mountain", "You are at the top of a massive mountain with a thick forest.");
-	Area* trail = new Area("Trail", "You are in a trail in the forest with low visibility of your surroundings.");
+	Area* mountain = new Area("Mountain", "It all started as a nice trip to an unexplored mountain, it got dark really quick and you find yourself lost somewhere near the top of the massive the mountain.");
+	Area* trail = new Area("Trail", "You are now in a trail in the forest with low visibility of your surroundings.");
 	Area* descent = new Area("Descent", "You are on a descent in one of the sides of the mountain.");
-	Area* waterfall = new Area("Waterfall", "You are at the top of a massive mountain with a thick forest.");
-	Area* cave = new Area("Cave", "You are in a trail in the forest with low visibility of your surroundings.");
-	Area* town = new Area("Town", "You are on a descent in one of the sides of the mountain.", true);
+	Area* waterfall = new Area("Waterfall", "You just arrived are at the top of a waterfall and there seems that there is no other way than going back where you came from.");
+	Area* cave = new Area("Cave", "You just entered an small cave that seems to connect the two sides of the mountain.");
+	Area* town = new Area("Town", "You found a town with welcoming people willing to help you!.", true);
 
 	/* Mountain exits */
 	Exit* mountain_to_trail = new Exit("north", "A trail in the woods can be seen north.", trail);
@@ -20,40 +20,40 @@ Game::Game() {
 
 	/* Trail exits */
 	Exit* trail_to_mountain = new Exit("south", "Going south you are able to go back to the area you came from.", mountain);
-	Exit* trail_to_waterfall = new Exit("west", "Going south you are able to go back to the area you came from.", waterfall);
+	Exit* trail_to_waterfall = new Exit("west", "You can hear a river flow west of where you are.", waterfall);
 	trail->AddExit(trail_to_mountain);
 	trail->AddExit(trail_to_waterfall);
 
 	/* Waterfall exits */
-	Exit* waterfall_to_trail = new Exit("east", "To the west you are able to go back to the area you came from.", trail);
+	Exit* waterfall_to_trail = new Exit("east", "To the east you are able to go back to the area you came from.", trail);
 	waterfall->AddExit(waterfall_to_trail);
 
 	/* Descent exits */
 	Exit* descent_to_mountain = new Exit("west", "To the west you are able to go back to the area you came from.", mountain);
-	Exit* descent_to_cave = new Exit("south", "To the west you are able to go back to the area you came from.", cave);
+	Exit* descent_to_cave = new Exit("south", "It looks like there is a cave south of where you are.", cave);
 	descent->AddExit(descent_to_mountain);
 	descent->AddExit(descent_to_cave);
 
 	/* Cave exits */
-	Exit* cave_to_descent = new Exit("north", "To the west you are able to go back to the area you came from.", descent);
-	Exit* cave_to_town = new Exit("east", "To the west you are able to go back to the area you came from.", town, false);
+	Exit* cave_to_descent = new Exit("north", "You can go back north to the area you came from.", descent);
+	Exit* cave_to_town = new Exit("east", "The cave's exit seems to be on the east side.", town, false);
 	cave->AddExit(cave_to_descent);
 	cave->AddExit(cave_to_town);
 
 	/* Town exits */
-	Exit* town_to_cave = new Exit("west", "To the west you are able to go back to the area you came from.", cave);
+	Exit* town_to_cave = new Exit("west", "", cave);
 	town->AddExit(town_to_cave);
 
 	/* NPC creation */
-	NonPlayerCharacter* npc = new NonPlayerCharacter("Pajarito", "a really angry-looking bird stands in the middle looking straight at you.", 45, 15);
+	NonPlayerCharacter* npc = new NonPlayerCharacter("Wolf", "A really angry-looking wolf stands on the way to the exit.", 45, 15);
 	cave->AddNPC(npc);
 
 	/* Item creation */
-	Item* wood_stick = new Item("Stick", "It doesn't look like it can hurt anything", WEAPON);
+	Item* wood_stick = new Item("Stick", "Laying on the ground there is a stick that looks that might come handy if something were to happen to you", WEAPON);
 	wood_stick->setAttackDamage(10);
 	trail->AddItem(wood_stick);
 
-	Item* sharp_rock = new Item("Rock", "It doesn't look like it can hurt anything", WEAPON);
+	Item* sharp_rock = new Item("Rock", "There is a rock with sharp edges near the water, it might improve your chances of surviving.", WEAPON);
 	sharp_rock->setAttackDamage(10);
 	waterfall->AddItem(sharp_rock);
 
@@ -62,6 +62,7 @@ Game::Game() {
 
 	/* Start game */
 	this->playing = true;
+	parser = new Parser();
 }
 
 Game::~Game() {

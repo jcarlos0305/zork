@@ -8,8 +8,15 @@ Exit::~Exit()
 {
 }
 
-void Exit::setNextLocation(Area * area) {
-	next_location = area;
+Area* Exit::getNextLocation() const {
+	if (can_travel) {
+		return next_location;
+	}
+	else {
+		cout << "You need to defeat the enemy to be able to travel" << endl;
+		cout << endl;
+		return nullptr;
+	}
 }
 
 void Exit::setCanTravel(bool value) {

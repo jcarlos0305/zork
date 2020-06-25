@@ -15,12 +15,14 @@ public:
 	// Accessors
 	inline string getDirection() const { return this->direction; }
 	inline string getDescription() const { return this->description; }
-	inline Area* getNextLocation() const { return this->next_location; }
 	inline bool getCanTravel() const { return this->can_travel; }
 
 	// Mutators
-	void setNextLocation(Area* area);
+	/*void setNextLocation(Area* area);*/
 	void setCanTravel(bool value);
+
+	// Functions
+	Area* getNextLocation() const;
 
 private:
 	string direction;

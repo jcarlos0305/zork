@@ -9,10 +9,18 @@ MainCharacter::~MainCharacter() {
 
 void MainCharacter::Go(string direction) {
 	Exit* exit = current_location->FindExit(direction);
-	if (exit) {
-		cout << "You traveled " << exit->getDirection() << endl << endl;
-		current_location = exit->getNextLocation();
-		current_location->DisplayInformation();
+	if (exit) { 
+		
+		if (exit->getNextLocation()) {
+			cout << "You traveled " << exit->getDirection() << endl << endl;
+			current_location = exit->getNextLocation();
+			current_location->DisplayInformation();
+			if (current_location->getIsLastArea()) {
+				cout << "You are saved!!" << endl;
+				cout << endl;
+				*playing = false;
+			}
+		}
 	}
 	else {
 		cout << "There was no exit on that direction" << endl;
@@ -32,10 +40,10 @@ Item * MainCharacter::FindItem(list<Item*> item_list, const string& itemName) {
 void MainCharacter::Pick() { 
 	Item* item = current_location->getItems().back();
 	if (item) {
-		AddToInventory(item);
-		current_location->RemoveItem(item);
 		cout << "You picked " << item->getName() << endl;
 		cout << endl;
+		AddToInventory(item);
+		current_location->RemoveItem(item);
 	}
 	else {
 		cout << "There where no items to pick" << endl;
@@ -46,10 +54,10 @@ void MainCharacter::Pick() {
 void MainCharacter::Pick(string item_name) { 
 	Item* item = FindItem(current_location->getItems(), item_name);
 	if (item) {
-		AddToInventory(item);
-		current_location->RemoveItem(item);
 		cout << "You picked " << item->getName() << endl;
 		cout << endl;
+		AddToInventory(item);
+		current_location->RemoveItem(item);
 	} else {
 		cout << item_name << " not found" << endl;
 		cout << endl;
@@ -98,10 +106,15 @@ void MainCharacter::Attack() {
 				cout << endl;
 				Die();
 			}
+			else {
+				cout << "The fight keeps going" << endl;
+				cout << endl;
+			}
 		}
 		else {
 			npc->Die();
 			current_location->RemoveNPC(npc);
+			current_location->getExits().back()->setCanTravel(true);
 		}
 	}
 	else {

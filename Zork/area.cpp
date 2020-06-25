@@ -1,7 +1,7 @@
 #include "area.h"
 
-Area::Area(string name, string description) :
-	name(name), description(description) {
+Area::Area(string name, string description, bool last_area) :
+	name(name), description(description), last_area(last_area) {
 }
 
 Area::~Area() {

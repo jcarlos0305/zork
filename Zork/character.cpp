@@ -29,16 +29,19 @@ void Character::UpdateStats() {
 }
 
 void Character::ShowStats() const {
-	cout << "Stats" << endl;
-	cout << "==========" << endl;
+	cout << "-----------" << endl;
+	cout << "   Stats   " << endl;
+	cout << "-----------" << endl;
 	cout << "HP: " << current_stats.hit_points << endl;
 	cout << "Attack: " << current_stats.attack_damage << endl;
+	cout << endl;
 }
 
 void Character::ShowInventory() const {
 	if (inventory.size() > 0) {
-		cout << "Inventory" << endl;
-		cout << "==========" << endl;
+		cout << "---------------" << endl;
+		cout << "   Inventory   " << endl;
+		cout << "---------------" << endl;
 		for (Item* const item : inventory) {
 			cout << item->getName() << "\n";
 		}

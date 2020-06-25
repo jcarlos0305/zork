@@ -1,7 +1,7 @@
 #include "item.h"
 
-Item::Item(string name, string description, ItemType type)
-	: name(name), description(description), type(type) {
+Item::Item(string name, string description, ItemType type) :
+	name(name), description(description), type(type) {
 	attack_damage = 0;
 	hit_points = 0;
 }

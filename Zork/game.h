@@ -2,6 +2,7 @@
 
 #include "main_character.h"
 #include "non_player_character.h"
+#include "parser.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -21,5 +22,6 @@ public:
 
 private:
 	bool playing;
+	Parser* parser;
 	MainCharacter* player;
 };

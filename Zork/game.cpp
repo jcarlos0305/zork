@@ -23,8 +23,12 @@ Game::Game() {
 	trail->AddNPC(npc);
 
 	/* Item creation */
-	Item* sword = new Item("Rusty sword", "It doesn't look like it can hurt anything", WEAPON);
+	Item* sword = new Item("Sword", "It doesn't look like it can hurt anything", WEAPON);
 	sword->setAttackDamage(10);
+
+	Item* dagger = new Item("Dagger", "It doesn't look like it can hurt anything", WEAPON);
+	dagger->setAttackDamage(10);
+	mountain->AddItem(dagger);
 
 	/* Character creation */
 	player = new MainCharacter("Capu", "Character in development", 50, 10, mountain);
@@ -42,6 +46,8 @@ void Game::StartGame() {
 	cout << "Map name: " << player->getCurrentLocation()->getName() << endl;
 	cout << endl;
 
+	player->getCurrentLocation()->DisplayInformation();
+
 	GameLoop();
 }
 
@@ -51,11 +57,11 @@ void Game::GameLoop() {
 	vector<string> args;
 
 	while (playing) {
-		player->getCurrentLocation()->DisplayInformation();
-
 		cout << "> ";
 		
 		getline (cin, user_input);
+
+		cout << endl;
 
 		istringstream ss(user_input);
 		string token = "";
@@ -64,10 +70,8 @@ void Game::GameLoop() {
 			args.push_back(token);
 		}
 
-		for (string word : args)
-			cout << word  << endl;
-
-		if (find(args.begin(), args.end(), "exit") != args.end())
-			playing = false;
+		Instruction* instruction = parser->parse(args);
+		instruction->execute(&playing, player);
+		args.clear();
 	}
 }

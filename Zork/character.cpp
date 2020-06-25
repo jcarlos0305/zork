@@ -3,6 +3,7 @@
 Character::Character(string name, string description, int  hit_points, int attack_damage) :
 name(name), description(description) {
 	base_stats = { hit_points, attack_damage };
+	current_stats = base_stats;
 }
 
 Character::~Character() {
@@ -10,7 +11,13 @@ Character::~Character() {
 }
 
 void Character::AddToInventory(Item * item) {
-	inventory.push_back(item);
+	if (inventory.size()) {
+		Item* storedItem = inventory.front();
+		storedItem->UpgradeItem(item);
+	}
+	else {
+		inventory.push_back(item);
+	}
 	UpdateStats();
 }
 

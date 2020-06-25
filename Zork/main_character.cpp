@@ -1,26 +1,28 @@
 #include "main_character.h"
 
-MainCharacter::MainCharacter(string name, string description, int hit_points, int attack_damage, Area* current_location) :
-	Character(name, description, hit_points, attack_damage), current_location(current_location) {
+MainCharacter::MainCharacter(string name, string description, int hit_points, int attack_damage, Area* current_location, bool* playing) :
+	Character(name, description, hit_points, attack_damage), current_location(current_location), playing(playing) {
 }
 
 MainCharacter::~MainCharacter() {
 }
 
-void MainCharacter::Go(const string direction) {
-	for (Exit* const exit : current_location->getExits()) {
-		if (direction.compare(exit->getDirection()) == 0) {
-			cout << "You traveled " << direction << endl << endl;
-			current_location = exit->getNextLocation();
-			current_location->DisplayInformation();
-		}
+void MainCharacter::Go(string direction) {
+	Exit* exit = current_location->FindExit(direction);
+	if (exit) {
+		cout << "You traveled " << exit->getDirection() << endl << endl;
+		current_location = exit->getNextLocation();
+		current_location->DisplayInformation();
+	}
+	else {
+		cout << "There was no exit on that direction" << endl;
+		cout << endl;
 	}
 }
 
-Item * MainCharacter::FindItem(list<Item*> item_list, const string& itemName)
-{
+Item * MainCharacter::FindItem(list<Item*> item_list, const string& itemName) {
 	for (Item* const item : item_list) {
-		if (_stricmp(itemName.c_str(), item->getName().c_str()) == 0) {
+		if (Utils::stringCompare(itemName.c_str(), item->getName().c_str()) == 0) {
 			return item;
 		}
 	}
@@ -86,6 +88,21 @@ void MainCharacter::Attack() {
 	Character* npc = current_location->getNPCs().back();
 	if (npc) {
 		Character::Attack(npc);
+		cout << "You attacked " << npc->getName() << endl;
+		if (npc->getIsAlive()) {
+			npc->Attack(this);
+			cout << npc->getName() << "  attacked you back" << endl;
+			cout << endl;
+			if (!this->getIsAlive()) {
+				cout << "You died!" << endl;
+				cout << endl;
+				Die();
+			}
+		}
+		else {
+			npc->Die();
+			current_location->RemoveNPC(npc);
+		}
 	}
 	else {
 		this->TakeDamage(1);
@@ -101,6 +118,10 @@ void MainCharacter::Attack(string enemy) {
 			Character::Attack(npc);
 		}
 	}
+}
+
+void MainCharacter::Die() {
+	*playing = false;
 }
 
 void MainCharacter::setCurrentLocation(Area * area) {

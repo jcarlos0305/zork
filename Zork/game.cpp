@@ -31,7 +31,7 @@ Game::Game() {
 	mountain->AddItem(dagger);
 
 	/* Character creation */
-	player = new MainCharacter("Capu", "Character in development", 50, 10, mountain);
+	player = new MainCharacter("Capu", "Character in development", 50, 20, mountain, &playing);
 	player->AddToInventory(sword);
 
 	this->playing = true;

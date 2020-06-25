@@ -161,6 +161,7 @@
     <ClCompile Include="main_character.cpp" />
     <ClCompile Include="non_player_character.cpp" />
     <ClCompile Include="parser.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="area.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="main_character.h" />
     <ClInclude Include="non_player_character.h" />
     <ClInclude Include="parser.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

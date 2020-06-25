@@ -99,7 +99,7 @@ void MainCharacter::Attack() {
 		cout << "You attacked " << npc->getName() << endl;
 		if (npc->getIsAlive()) {
 			npc->Attack(this);
-			cout << npc->getName() << "  attacked you back" << endl;
+			cout << npc->getName() << " attacked you back" << endl;
 			cout << endl;
 			if (!this->getIsAlive()) {
 				cout << "You died!" << endl;

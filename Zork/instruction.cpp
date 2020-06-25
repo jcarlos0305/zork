@@ -1,7 +1,7 @@
 #include "instruction.h"
 
-Instruction::Instruction() {
-	setType(INVALID);
+Instruction::Instruction():
+	type(INVALID) {
 }
 
 Instruction::Instruction(InstructionType type) :

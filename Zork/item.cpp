@@ -13,6 +13,14 @@ void Item::AddItem(Item * item) {
 	contain_items.push_back(item);
 }
 
+void Item::UpgradeItem(Item * item) {
+	contain_items.push_back(item);
+	attack_damage += item->getAttackDamage();
+	hit_points += item->getHitPoints();
+	cout << "You combined the items you had into a better item" << endl;
+	cout << endl;
+}
+
 void Item::setAttackDamage(int damage) {
 	attack_damage = damage;
 }

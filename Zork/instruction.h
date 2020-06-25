@@ -18,16 +18,17 @@ class Instruction {
 public:
 	Instruction();
 	Instruction(InstructionType type);
-	Instruction(InstructionType type, string argument);
 	~Instruction();
 
 	// Accessors
 	inline InstructionType getType() const { return this->type; }
 	inline string getArgument() const { return this->argument; }
-	
+	inline string getException() const { return this->exception; }
+
 	// Mutators
 	void setType(InstructionType type);
 	void setArgument(string argument);
+	void setException(string exception);
 
 	// Functions
 	void execute(bool* playing, MainCharacter* player);
@@ -35,4 +36,7 @@ public:
 private:
 	InstructionType type;
 	string argument;
+	string exception;
+	bool hasArguments();
+	bool checkParserExceptions();
 };

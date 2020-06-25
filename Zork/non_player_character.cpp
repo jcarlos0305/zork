@@ -7,3 +7,8 @@ NonPlayerCharacter::NonPlayerCharacter(string name, string description, int hit_
 
 NonPlayerCharacter::~NonPlayerCharacter() {
 }
+
+void NonPlayerCharacter::Die() {
+	cout << this->getName() << " has died." << endl;
+	cout << endl;
+}

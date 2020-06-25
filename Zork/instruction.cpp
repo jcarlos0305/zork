@@ -8,10 +8,6 @@ Instruction::Instruction(InstructionType type) :
 	type(type) {
 }
 
-Instruction::Instruction(InstructionType type, string argument) :
-	type(type), argument(argument) {
-}
-
 Instruction::~Instruction() {
 }
 
@@ -23,19 +19,53 @@ void Instruction::setArgument(string argument) {
 	this->argument = argument;
 }
 
+void Instruction::setException(string exception) {
+	this->exception = exception;
+}
+
+bool Instruction::hasArguments() {
+	return argument.size() > 0;
+}
+
+bool Instruction::checkParserExceptions() {
+	if (exception.size() > 0) {
+		cout << exception << endl;
+		return true;
+	}
+	return false;
+}
+
 void Instruction::execute(bool *playing, MainCharacter *player) {
+	// if there's a pre-defined parser exception, break the instruction cycle
+	if (checkParserExceptions()) return;
+
 	switch (type) {
 	case DIRECTION:
 		player->Go(argument);
 		break;
 	case ATTACK:
-		player->Attack(argument);
+		if (hasArguments()) {
+			player->Attack(argument);
+		}
+		else {
+			player->Attack();
+		}
 		break;
 	case PICK_ITEM:
-		player->Pick(argument);
+		if (hasArguments()) {
+			player->Pick(argument);
+		}
+		else {
+			player->Pick();
+		}
 		break;
 	case DROP_ITEM:
-		player->Drop(argument);
+		if (hasArguments()) {
+			player->Drop(argument);
+		}
+		else {
+			player->Drop();
+		}
 		break;
 	case INVENTORY:
 		player->ShowInventory();

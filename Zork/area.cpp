@@ -23,6 +23,10 @@ void Area::AddNPC(Character * npc) {
 	npcs.push_back(npc);
 }
 
+void Area::RemoveNPC(Character * npc) {
+	npcs.remove(npc);
+}
+
 void Area::DisplayInformation() const {
 	cout << name << endl;
 	cout << description << " ";
@@ -48,4 +52,13 @@ void Area::DisplayInformation() const {
 		}
 	}
 	cout << endl;
+}
+
+Exit* Area::FindExit(const string& exit_name) const {
+	for (Exit* const exit : exits) {
+		if (Utils::stringCompare(exit_name.c_str(), exit->getDirection().c_str()) == 0) {
+			return exit;
+		}
+	}
+	return nullptr;
 }

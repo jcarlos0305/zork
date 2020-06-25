@@ -3,6 +3,7 @@
 #include "exit.h"
 #include "item.h"
 #include "character.h"
+#include "utils.h"
 #include <iostream>
 #include <string>
 #include <list>
@@ -30,7 +31,10 @@ public:
 	void AddItem(Item* item);
 	void RemoveItem(Item* item);
 	void AddNPC(Character* npc);
+	void RemoveNPC(Character * npc);
 	void DisplayInformation() const;
+
+	Exit* FindExit(const string & exit_name) const;
 
 private:
 	string name;

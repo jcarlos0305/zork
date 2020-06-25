@@ -8,34 +8,48 @@ Parser::~Parser() {
 
 Instruction *Parser::parse(vector<string> &args) {
 	Instruction *i = new Instruction(INVALID); // start assuming the command is invalid
+	const char* command = args[0].c_str();
+	const char* argument = "";
+
+	if (args.size() > 1) {
+		argument = args[1].c_str();
+		i->setArgument(argument);
+	}
 
 	if (args.size() > 0) {
-		if (args[0] == "go") {
+		if (Utils::stringCompare(command, "go") == 0) {
 			i->setType(DIRECTION);
 		}
-		else if (args[0] == "pick") {
+		else if (Utils::stringCompare(command, "pick") == 0) {
 			i->setType(PICK_ITEM);
+
+			if (Utils::stringCompare(argument, "item") == 0) {
+				i->setArgument("");
+			}
 		}
-		else if (args[0] == "drop") {
+		else if (Utils::stringCompare(command, "drop") == 0) {
 			i->setType(DROP_ITEM);
+
+			if (Utils::stringCompare(argument, "item") == 0) {
+				i->setArgument("");
+			}
 		}
-		else if (args[0] == "attack") {
+		else if (Utils::stringCompare(command, "attack") == 0) {
 			i->setType(ATTACK);
 		}
-		else if (args[0] == "show") {
-			if (args[1] == "inventory") {
+		else if (Utils::stringCompare(command, "show") == 0) {
+			if (Utils::stringCompare(argument, "inventory") == 0) {
 				i->setType(INVENTORY);
 			}
-			else if (args[1] == "stats") {
+			else if (Utils::stringCompare(argument, "stats") == 0) {
 				i->setType(STATS);
 			}
+			else {
+				i->setException("Show inventory or stats?");
+			}
 		}
-		else if (args[0] == "exit") {
+		else if (Utils::stringCompare(command, "exit") == 0) {
 			i->setType(EXIT);
-		}
-
-		if (args.size() > 1) {
-			i->setArgument(args[1]);
 		}
 	}
 	return i;

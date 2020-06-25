@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <list>
 
@@ -25,6 +26,7 @@ public:
 
 	// Functions
 	void AddItem(Item* item);
+	void UpgradeItem(Item* item);
 
 	// Mutators
 	void setAttackDamage(int damage);

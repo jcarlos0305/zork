@@ -16,6 +16,8 @@ public:
 	// Accessors
 	inline Behavior getNpcBehavior() const { return this->npc_behavior; }
 
+	void Die();
+
 private:
 	Behavior npc_behavior;
 };

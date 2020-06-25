@@ -37,6 +37,9 @@ public:
 	void Attack(Character* enemy) const;
 	void TakeDamage(int incoming_damage);
 
+	// Virtual function
+	virtual void Die() = 0;
+
 protected:
 	list<Item*> inventory;
 

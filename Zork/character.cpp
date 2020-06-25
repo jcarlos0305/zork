@@ -59,8 +59,29 @@ void Character::ShowInventory() const {
 	}
 }
 
-void Character::Attack(Character* enemy) const{
+void Character::Attack(Character* enemy, Character* player) const{
 	enemy->TakeDamage(current_stats.attack_damage);
+	cout << "You attacked " << enemy->getName() << endl;
+	if (enemy->getIsAlive()) {
+		player->TakeDamage(enemy->getAttackDamage());
+		cout << enemy->getName() << " attacked you back" << endl;
+		cout << endl;
+		if (!this->getIsAlive()) {
+			cout << "You died!" << endl;
+			cout << endl;
+			player->Die();
+		}
+		else {
+			cout << enemy->getName() << "'s health is " << enemy->getHitPoints() << endl;
+			cout << "The fight keeps going" << endl;
+			cout << endl;
+		}
+	}
+	else {
+		enemy->Die();
+		player->getCurrentLocation()->RemoveNPC(enemy);
+		player->getCurrentLocation()->getExits().back()->setCanTravel(true);
+	}
 }
 
 void Character::TakeDamage(int incoming_damage) {

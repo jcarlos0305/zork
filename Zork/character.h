@@ -34,11 +34,12 @@ public:
 	void UpdateStats();
 	void ShowStats() const;
 	void ShowInventory() const;
-	void Attack(Character* enemy) const;
+	void Attack(Character* enemy, Character*) const;
 	void TakeDamage(int incoming_damage);
 
 	// Virtual function
 	virtual void Die() = 0;
+	virtual Area* getCurrentLocation() = 0;
 
 protected:
 	list<Item*> inventory;

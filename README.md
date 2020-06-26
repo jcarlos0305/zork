@@ -21,14 +21,14 @@ The game was developed in C++
 
 These are the commands that will get your adventure going!
 
-| Command | Argument       | Valid Options            | Outcome                                           |
-| ------- | -------------- | ------------------------ | ------------------------------------------------- |
-| Go      | <direction>    | North, South, East, West | The character will move in that direction         |
-| Pick    | [item \| name] | Item, Stick, Rock        | The character will pick an item if there's any    |
-| Drop    | [item \| name] | Item, Stick, Rock        | The character will drop an item if it has any     |
-| Attack  | [name]         | Wolf                     | The character will attack an enemy if there's any |
-| Show    | <information>  | Inventory, Stats         | The requested information will be displayed       |
-| Exit    |                |                          | Close the game                                    |
+| Command | Argument            | Valid Options            | Outcome                                           |
+| ------- | ------------------- | ------------------------ | ------------------------------------------------- |
+| Go      | &lt;direction&gt;   | North, South, East, West | The character will move in that direction         |
+| Pick    | [item \| name]      | Item, Stick, Rock        | The character will pick an item if there's any    |
+| Drop    | [item \| name]      | Item, Stick, Rock        | The character will drop an item if it has any     |
+| Attack  | [name]              | Wolf                     | The character will attack an enemy if there's any |
+| Show    | &lt;information&gt; | Inventory, Stats         | The requested information will be displayed       |
+| Exit    |                     |                          | Close the game                                    |
 
 I won't tell you how to beat the game, you will have to experience it by yourself, but here's a friendly hint. ↑\*←\*→↓→↓→
 
